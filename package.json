@@ -1,0 +1,22 @@
+{
+  "name": "vaccine-regular-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonephraim/Vaccine-Regular-GraphQL.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonephraim/Vaccine-Regular-GraphQL/issues"
+  },
+  "homepage": "https://github.com/jasonephraim/Vaccine-Regular-GraphQL#readme",
+  "dependencies": {
+    "sequelize": "^6.5.0"
+  }
+}
