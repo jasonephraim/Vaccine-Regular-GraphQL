@@ -1,10 +1,13 @@
-const uuid = require("uuid/v4");
-
-("use strict");
+"use strict";
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
     {
+      id: {
+        type: DataTypes.STRING,
+        primaryKey: true,
+        allowNull: false,
+      },
       firstName: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -28,9 +31,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  User.beforeCreate((user, _) => {
-    return (user.id = uuid());
-  });
   User.associate = function (models) {
     // associations can be defined here
   };

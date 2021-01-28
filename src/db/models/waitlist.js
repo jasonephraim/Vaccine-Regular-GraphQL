@@ -1,10 +1,13 @@
-const uuid = require("uuid/v4");
-
-("use strict");
+"use strict";
 module.exports = (sequelize, DataTypes) => {
   const Waitlist = sequelize.define(
     "Waitlist",
     {
+      id: {
+        type: DataTypes.STRING,
+        primaryKey: true,
+        allowNull: false,
+      },
       userId: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -20,9 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Waitlist.beforeCreate((waitlist, _) => {
-    return (waitlist.id = uuid());
-  });
   Waitlist.associate = function (models) {
     // associations can be defined here
   };

@@ -1,21 +1,22 @@
 require("dotenv").config();
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
-
-const resolvers = require("./graphql/resolvers/hello");
-const typeDefs = require("./graphql/schemas/hello");
 const cors = require("cors");
 const { createServer } = require("http");
 const cookieParser = require("cookie-parser");
+
 const sequelize = require("./db/sequelize");
+const resolvers = require("./graphql/resolvers/index");
+const typeDefs = require("./graphql/schemas/index");
 
 const startServer = async () => {
   const server = new ApolloServer({
-    resolvers,
     typeDefs,
+    resolvers,
+    context: ({ req, res }) => ({ req, res }),
   });
 
-  await sequelize;
+  await sequelize();
 
   const app = express();
   app.use(cookieParser());

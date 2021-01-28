@@ -1,10 +1,13 @@
-const uuid = require("uuid/v4");
-
-("use strict");
+"use strict";
 module.exports = (sequelize, DataTypes) => {
   const Slot = sequelize.define(
     "Slot",
     {
+      id: {
+        type: DataTypes.STRING,
+        primaryKey: true,
+        allowNull: false,
+      },
       day: {
         type: DataTypes.DATE,
         allowNull: false,
@@ -23,9 +26,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Slot.beforeCreate((slot, _) => {
-    return (slot.id = uuid());
-  });
   Slot.associate = function (models) {
     // associations can be defined here
   };

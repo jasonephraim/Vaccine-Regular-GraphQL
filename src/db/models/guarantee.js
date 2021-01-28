@@ -1,10 +1,13 @@
-const uuid = require("uuid/v4");
-
-("use strict");
+"use strict";
 module.exports = (sequelize, DataTypes) => {
   const Guarantee = sequelize.define(
     "Guarantee",
     {
+      id: {
+        type: DataTypes.STRING,
+        primaryKey: true,
+        allowNull: false,
+      },
       userId: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -20,9 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Guarantee.beforeCreate((guarantee, _) => {
-    return (guarantee.id = uuid());
-  });
   Guarantee.associate = function (models) {
     // associations can be defined here
   };

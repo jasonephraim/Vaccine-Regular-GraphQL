@@ -1,3 +1,7 @@
-const HelloResolver = require("./hello");
+const queries = require("./queries");
+const mutations = require("./mutations");
 
-export let HelloResolver = [HelloResolver];
+module.exports = {
+  Query: queries,
+  Mutation: mutations,
+};
