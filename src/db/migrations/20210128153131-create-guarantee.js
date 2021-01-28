@@ -1,33 +1,33 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Guarantees', {
+    return queryInterface.createTable("Guarantees", {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID,
       },
       userId: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       locationId: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       isExpired: {
-        type: Sequelize.BOOLEAN
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Guarantees');
-  }
+    return queryInterface.dropTable("Guarantees");
+  },
 };
