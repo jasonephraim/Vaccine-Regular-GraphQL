@@ -5,9 +5,18 @@ module.exports = (sequelize, DataTypes) => {
   const Guarantee = sequelize.define(
     "Guarantee",
     {
-      userId: DataTypes.STRING,
-      locationId: DataTypes.STRING,
-      isExpired: DataTypes.BOOLEAN,
+      userId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      locationId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      isExpired: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
     },
     {}
   );

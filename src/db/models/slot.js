@@ -5,10 +5,21 @@ module.exports = (sequelize, DataTypes) => {
   const Slot = sequelize.define(
     "Slot",
     {
-      day: DataTypes.DATE,
-      locationID: DataTypes.STRING,
-      isReserved: DataTypes.BOOLEAN,
-      userId: DataTypes.STRING,
+      day: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      locationID: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      isReserved: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
+      userId: {
+        type: DataTypes.STRING,
+      },
     },
     {}
   );

@@ -5,9 +5,18 @@ module.exports = (sequelize, DataTypes) => {
   const Waitlist = sequelize.define(
     "Waitlist",
     {
-      userId: DataTypes.STRING,
-      day: DataTypes.DATE,
-      locationId: DataTypes.STRING,
+      userId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      day: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      locationId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     {}
   );
