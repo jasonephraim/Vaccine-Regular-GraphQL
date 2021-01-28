@@ -2,12 +2,15 @@ require("dotenv").config();
 const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const cors = require("cors");
+const cron = require("node-cron");
 const { createServer } = require("http");
 const cookieParser = require("cookie-parser");
 
 const sequelize = require("./db/sequelize");
 const resolvers = require("./graphql/resolvers/index");
 const typeDefs = require("./graphql/schemas/index");
+const expireGuarantees = require("./utils/expireGuarantees");
+const createSlots = require("./utils/createSlots");
 
 const startServer = async () => {
   const server = new ApolloServer({
@@ -34,6 +37,11 @@ const startServer = async () => {
   server.applyMiddleware({ app, path: "/graphql" });
 
   const httpServer = createServer(app);
+
+  cron.schedule("* * * * *", expireGuarantees);
+
+  const startDate = new Date();
+  createSlots(5, startDate.setHours(8), 5);
 
   httpServer.listen({ port: process.env.PORT }, () =>
     console.log(`Server is running on port ${process.env.PORT}/graphql`)

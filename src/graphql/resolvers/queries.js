@@ -11,11 +11,10 @@ module.exports = {
 
   getGuaranteeByPk: (_, { id }) => Guarantee.findByPk(id),
 
-  /*needs revision
-  getGuarantee: (_, { userId, locationId, Date }) =>
+  getGuarantee: (_, { userId, locationId }) =>
     Guarantee.findAll({
       where: { userId: userId, locationId: locationId, Date: Date },
-    }),*/
+    }),
 
   getSlotsToReserve: async (_, { guaranteeId }) => {
     const guarantee = await Guarantee.findByPk(guaranteeId);

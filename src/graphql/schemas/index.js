@@ -4,7 +4,7 @@ const typeDefs = gql`
   type Query {
     getGuarantees: [Guarantee]!
     getGuaranteeByPk(id: String!): Guarantee
-    # getGuarantee(userId: String!, locationId: String!, Date: date!): Guarantee
+    getGuarantee(userId: String!, locationId: String!): Guarantee
     getSlotsToReserve(guaranteeId: String!): SlotsByLocation
     getUsers: [User]!
     getUserByPk(id: String!): User

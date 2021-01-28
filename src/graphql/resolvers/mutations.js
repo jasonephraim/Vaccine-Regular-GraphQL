@@ -1,9 +1,15 @@
-const { Guarantee, Location } = require("../../db/models");
+const {
+  Guarantee,
+  Location,
+  User,
+  Slot,
+  Waitlist,
+} = require("../../db/models");
 const uuidv4 = require("uuid").v4;
 
 module.exports = {
   createAccount: (_, { model }) => {
-    return User.create({ ...model, id: v4() });
+    return User.create({ ...model, id: uuidv4() });
   },
 
   createGuarantee: (_, { model }) =>
