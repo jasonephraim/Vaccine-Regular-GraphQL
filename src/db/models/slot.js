@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         allowNull: false,
       },
-      locationID: {
+      locationId: {
         type: DataTypes.STRING,
         allowNull: false,
       },
