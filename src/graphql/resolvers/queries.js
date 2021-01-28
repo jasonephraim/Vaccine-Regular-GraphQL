@@ -11,6 +11,34 @@ module.exports = {
 
   getGuaranteeByPk: (_, { id }) => Guarantee.findByPk(id),
 
+  /*needs revision
+  getGuarantee: (_, { userId, locationId, Date }) =>
+    Guarantee.findAll({
+      where: { userId: userId, locationId: locationId, Date: Date },
+    }),*/
+
+  getSlotsToReserve: async (_, { guaranteeId }) => {
+    const guarantee = await Guarantee.findByPk(guaranteeId);
+    const location = await Location.findByPk(guarantee.locationId);
+    const guaranteesByLocation = await Guarantee.findAll({
+      where: { locationId: location.id, isExpired: false },
+    });
+    const slots = await Slot.findAll({
+      where: { isReserved: false, locationId: location.id },
+    });
+    const waitListsByLocation = await Waitlist.findAll({
+      where: { locationId: location.id },
+    });
+
+    return {
+      location: location,
+      numberOfAvailableSlots: slots.length,
+      numberOfPending: guaranteesByLocation.length,
+      numberOfWaitlist: waitListsByLocation.length,
+      availableSlots: slots,
+    };
+  },
+
   getUsers: () => User.findAll(),
 
   getUserByPk: (_, { id }) => User.findByPk(id),
@@ -32,8 +60,8 @@ module.exports = {
     return {
       location: theLocation,
       numberOfAvailableSlots: numberAvailable,
-      numberOfPending: numberPending,
-      numberOfWaitlist: numberWaitlist,
+      pendingGuarantees: numberPending,
+      pendingWaitlists: numberWaitlist,
       availableSlots: theSlots,
     };
   },

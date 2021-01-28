@@ -4,23 +4,25 @@ const typeDefs = gql`
   type Query {
     getGuarantees: [Guarantee]!
     getGuaranteeByPk(id: String!): Guarantee
-    getSlotsForLocation(id: String!): SlotsByLocation
-    getSlots: [Slot]!
-    getSlotByPk(id: String!): Slot
-    getGuaranteeSlots(guaranteeId: String!): SlotsByLocation
+    # getGuarantee(userId: String!, locationId: String!, Date: date!): Guarantee
+    getSlotsToReserve(guaranteeId: String!): SlotsByLocation
     getUsers: [User]!
     getUserByPk(id: String!): User
     getWaitlists: [Waitlist]!
+    getSlots: [Slot]!
+    getSlotByPk(id: String!): Slot
+    getSlotsForLocation(id: String!): SlotsByLocation
   }
   type Mutation {
+    createAccount(model: UserInput!): User!
     createGuarantee(model: GuaranteeInput!): Guarantee!
     createLocation(model: LocationInput!): Location!
-    createSlot(model: SlotInput!): Slot!
-    unreserveSlot(id: String!): Boolean!
     slotToReserveRequest(userId: String!, slotId: String!): Slot
-    createAccount(model: UserInput!): User!
-    createWaitlist(model: WaitlistInput!): Waitlist!
     deleteWaitlist(id: String!): Boolean!
+    unreserveSlot(id: String!): Boolean!
+
+    createSlot(model: SlotInput!): Slot!
+    createWaitlist(model: WaitlistInput!): Waitlist!
   }
   type Guarantee {
     id: ID!
