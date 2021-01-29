@@ -1,3 +1,5 @@
+const uuidv4 = require("uuid").v4;
+
 const {
   Guarantee,
   Location,
@@ -5,7 +7,6 @@ const {
   User,
   Waitlist,
 } = require("../../db/models");
-const uuidv4 = require("uuid").v4;
 
 module.exports = {
   getGuarantees: () => Guarantee.findAll(),

@@ -23,8 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Waitlist.associate = function (models) {
-    // associations can be defined here
-  };
+  Waitlist.associate = function (models) {};
   return Waitlist;
 };

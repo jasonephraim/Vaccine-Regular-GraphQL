@@ -1,6 +1,7 @@
-const { Slot, Location } = require("../db/models");
 const moment = require("moment");
 const v4 = require("uuid").v4;
+
+const { Slot, Location } = require("../db/models");
 
 const createSlots = async (amount, startDate, runDays) => {
   Slot.destroy({ truncate: true });

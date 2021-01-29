@@ -23,8 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Guarantee.associate = function (models) {
-    // associations can be defined here
-  };
+  Guarantee.associate = function (models) {};
   return Guarantee;
 };
