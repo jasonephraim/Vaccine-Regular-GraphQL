@@ -5,16 +5,36 @@ const {
   User,
   Waitlist,
 } = require("../../db/models");
+const uuidv4 = require("uuid").v4;
 
 module.exports = {
   getGuarantees: () => Guarantee.findAll(),
 
   getGuaranteeByPk: (_, { id }) => Guarantee.findByPk(id),
 
-  getGuarantee: (_, { userId, locationId }) =>
-    Guarantee.findAll({
-      where: { userId: userId, locationId: locationId, Date: Date },
-    }),
+  getGuarantee: async (_, { userId, locationId }) => {
+    const slots = await Slot.findAll({
+      where: {
+        locationId,
+        isReserved: false,
+      },
+    });
+    const guarantees = await Guarantee.findAll({
+      where: {
+        locationId,
+      },
+    });
+    if (guarantees.length < slots.length) {
+      return Guarantee.create({
+        id: uuidv4(),
+        userId,
+        locationId,
+        isExpired: false,
+      });
+    } else {
+      return Waitlist.create({ id: uuidv4(), userId, locationId });
+    }
+  },
 
   getSlotsToReserve: async (_, { guaranteeId }) => {
     const guarantee = await Guarantee.findByPk(guaranteeId);

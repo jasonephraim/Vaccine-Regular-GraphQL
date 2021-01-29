@@ -7,13 +7,15 @@ const expireGuarantees = async () => {
 
   const compareDate = moment();
 
-  for (guarantee of guarantees) {
-    const guaranteeDate = moment(guarantee.createdAt);
+  guarantees.forEach((guarantee) => {
+    for (guarantee of guarantees) {
+      const guaranteeDate = moment(guarantee.createdAt);
 
-    if (compareDate.diff(guaranteeDate) > 300000) {
-      await guarantee.update({ ...guarantee, isExpired: true });
+      if (compareDate.diff(guaranteeDate) > 300000) {
+        guarantee.update({ ...guarantee, isExpired: true });
+      }
     }
-  }
+  });
 };
 
 module.exports = expireGuarantees;

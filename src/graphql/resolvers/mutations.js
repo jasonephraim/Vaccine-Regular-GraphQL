@@ -24,12 +24,13 @@ module.exports = {
       if (!reservedSlot.isReserved) {
         return reservedSlot.update({
           ...reservedSlot,
-          isReserved: true,
           userId,
+          isReserved: true,
         });
       }
+    } else {
+      return false;
     }
-    return false;
   },
 
   deleteWaitlist: async (_, { id }) => {
